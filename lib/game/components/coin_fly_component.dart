@@ -1,0 +1,33 @@
+import 'package:flame/components.dart';
+
+import 'package:flutter/foundation.dart';
+import 'package:flame/events.dart';
+import 'package:flame/sprite.dart';
+class CoinFlyComponent extends SpriteComponent {
+  final Vector2 target;
+  final VoidCallback onArrived;
+
+  CoinFlyComponent({
+    required Sprite sprite,
+    required Vector2 start,
+    required this.target,
+    required this.onArrived,
+  }) : super(
+          sprite: sprite,        // ✅ SET HERE
+          position: start,
+          size: Vector2.all(24),
+          anchor: Anchor.center,
+        );
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    position += (target - position) * 6 * dt;
+
+    if (position.distanceTo(target) < 5) {
+      onArrived();
+      removeFromParent();
+    }
+  }
+}

@@ -1,0 +1,16 @@
+name: flame_farm_starter
+description: A Flutter Flame farm starter project
+version: 1.0.0
+
+environment:
+  sdk: ">=2.19.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flame: ^1.14.0
+  provider: ^6.1.2
+
+flutter:
+  assets:
+    - assets/images/sprites/
