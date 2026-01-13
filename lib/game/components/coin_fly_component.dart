@@ -1,8 +1,7 @@
 import 'package:flame/components.dart';
 
 import 'package:flutter/foundation.dart';
-import 'package:flame/events.dart';
-import 'package:flame/sprite.dart';
+
 class CoinFlyComponent extends SpriteComponent {
   final Vector2 target;
   final VoidCallback onArrived;
@@ -13,7 +12,7 @@ class CoinFlyComponent extends SpriteComponent {
     required this.target,
     required this.onArrived,
   }) : super(
-          sprite: sprite,        // ✅ SET HERE
+          sprite: sprite,
           position: start,
           size: Vector2.all(24),
           anchor: Anchor.center,

@@ -1,7 +1,7 @@
-
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
+import 'package:flame_farm_starter/game/config/global_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,12 +10,10 @@ import 'components/coin_fly_component.dart';
 import 'game_state.dart';
 import 'package:flame/events.dart';
 
-import 'package:flame/sprite.dart';
-
 class FarmGame extends FlameGame with TapCallbacks {
   late SpriteSheet coinSheet;
-late List<Sprite> growthSprites;
-@override
+  late List<Sprite> growthSprites;
+  @override
   Color backgroundColor() => const Color(0xFF7EC850);
 
   @override
@@ -24,27 +22,27 @@ late List<Sprite> growthSprites;
     final coinImg = await images.load('sprites/coins.png');
 
     growthSprites = [
-        Sprite(
-          image,
-          srcPosition: Vector2(0, 0),
-          srcSize: Vector2(64,213),
-        ),
-        Sprite(
-          image,
-          srcPosition: Vector2(64, 0),
-          srcSize: Vector2(64, 213),
-        ),
-        Sprite(
-          image,
-          srcPosition: Vector2(128, 0),
-          srcSize: Vector2(64, 213),
-        ),
-        Sprite(
-          image,
-          srcPosition: Vector2(256, 0),
-          srcSize: Vector2(64, 213),
-        ),
-      ];
+      Sprite(
+        image,
+        srcPosition: Vector2(0, 0),
+        srcSize: Vector2(54, 64),
+      ),
+      Sprite(
+        image,
+        srcPosition: Vector2(54, 0),
+        srcSize: Vector2(54, 64),
+      ),
+      Sprite(
+        image,
+        srcPosition: Vector2(108, 0),
+        srcSize: Vector2(54, 64),
+      ),
+      Sprite(
+        image,
+        srcPosition: Vector2(162, 0),
+        srcSize: Vector2(54, 64),
+      ),
+    ];
     coinSheet = SpriteSheet(image: coinImg, srcSize: Vector2(64, 64));
 
     overlays.add('hud');
@@ -52,11 +50,11 @@ late List<Sprite> growthSprites;
   }
 
   void _createGrid() {
-    for (int y = 0; y < 3; y++) {
-      for (int x = 0; x < 4; x++) {
+    for (int y = 0; y < MAX_ROWS; y++) {
+      for (int x = 0; x < MAX_COLS; x++) {
         add(
           FarmTile(
-            position: Vector2(40 + x * 60, 200 + y * 60),
+            position: Vector2(40 + x * BOUNDS_TILE, 100 + y * BOUNDS_TILE),
           ),
         );
       }

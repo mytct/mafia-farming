@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame_farm_starter/game/farm_game.dart';
 import 'package:flutter/material.dart';
 
-import '../farm_game.dart';
 import 'crop_component.dart';
 
 class FarmTile extends RectangleComponent
@@ -18,17 +18,16 @@ class FarmTile extends RectangleComponent
 
   @override
   void onTapDown(TapDownEvent event) {
-    // 🌱 Plant
     if (crop == null) {
       crop = CropComponent(
         stages: gameRef.growthSprites,
-        position: position + size / 2,
+        position:
+            Vector2(position.x + size.x / 2, position.y + size.y / 2 - 10),
       );
       gameRef.add(crop!);
       return;
     }
 
-    // 🌾 Harvest
     if (crop!.isReady) {
       gameRef.spawnCoin(crop!.position);
       crop!.removeFromParent();

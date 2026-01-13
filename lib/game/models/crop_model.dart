@@ -1,9 +1,3 @@
-
-
-import 'package:flutter/foundation.dart';
-import 'package:flame/events.dart';
-import 'package:flame/sprite.dart';
-
 enum CropStage { seed, growing, mature }
 
 class CropModel {

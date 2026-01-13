@@ -1,7 +1,5 @@
 import 'package:flame/components.dart';
-import 'package:flame/events.dart';
 
-import 'package:flame/sprite.dart';
 class CropComponent extends SpriteComponent {
   final List<Sprite> stages;
   int stage = 0;
@@ -12,15 +10,16 @@ class CropComponent extends SpriteComponent {
   CropComponent({
     required this.stages,
     required Vector2 position,
+    double growthTime = 1,
   }) : super(
           sprite: stages[0],
           position: position,
-          size: Vector2(64, 213),
+          size: Vector2(54, 64),
           anchor: Anchor.center,
           priority: 1,
         ) {
     _growTimer = Timer(
-      1.5, // ⏱ grow every 1.5 seconds
+      growthTime,
       repeat: true,
       onTick: _grow,
     );
