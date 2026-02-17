@@ -1,6 +1,7 @@
 name: flame_farm_starter
 description: A Flutter Flame farm starter project
 version: 1.0.0
+publish_to: none
 
 environment:
   sdk: ">=2.19.0 <4.0.0"
@@ -10,6 +11,12 @@ dependencies:
     sdk: flutter
   flame: ^1.14.0
   provider: ^6.1.2
+  go_router: ^14.2.0
+  app_core:
+    git:
+      url: https://github.com/mytct/base_flutter.git
+      path: app_core
+      ref: main
 
 flutter:
   assets:
