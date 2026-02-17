@@ -1,7 +1,9 @@
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
-import 'package:flame_farm_starter/game/config/global_config.dart';
+import 'package:flame_farm_starter/utils/config.dart';
+import 'package:flame_farm_starter/utils/dimens.dart';
+import 'package:flame_farm_starter/utils/game_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,47 +16,50 @@ class FarmGame extends FlameGame with TapCallbacks {
   late SpriteSheet coinSheet;
   late List<Sprite> growthSprites;
   @override
-  Color backgroundColor() => const Color(0xFF7EC850);
+  Color backgroundColor() => GameColors.farmTilePlanted;
 
   @override
   Future<void> onLoad() async {
     final image = await images.load('sprites/plants.png');
     final coinImg = await images.load('sprites/coins.png');
+    final srcSize = Vector2(Dimens.largex, Dimens.largex);
 
     growthSprites = [
       Sprite(
         image,
         srcPosition: Vector2(0, 0),
-        srcSize: Vector2(54, 64),
+        srcSize: srcSize,
       ),
       Sprite(
         image,
         srcPosition: Vector2(54, 0),
-        srcSize: Vector2(54, 64),
+        srcSize: srcSize,
       ),
       Sprite(
         image,
         srcPosition: Vector2(108, 0),
-        srcSize: Vector2(54, 64),
+        srcSize: srcSize,
       ),
       Sprite(
         image,
         srcPosition: Vector2(162, 0),
-        srcSize: Vector2(54, 64),
+        srcSize: srcSize,
       ),
     ];
-    coinSheet = SpriteSheet(image: coinImg, srcSize: Vector2(64, 64));
+    coinSheet = SpriteSheet(
+        image: coinImg, srcSize: Vector2(Dimens.normalx, Dimens.normalx));
 
     overlays.add('hud');
     _createGrid();
   }
 
   void _createGrid() {
-    for (int y = 0; y < MAX_ROWS; y++) {
-      for (int x = 0; x < MAX_COLS; x++) {
+    for (int y = 0; y < Config.MAX_ROWS; y++) {
+      for (int x = 0; x < Config.MAX_COLUMNS; x++) {
         add(
           FarmTile(
-            position: Vector2(40 + x * BOUNDS_TILE, 100 + y * BOUNDS_TILE),
+            position: Vector2(Dimens.normal + x * Config.BOUNDS_TILE,
+                100 + y * Config.BOUNDS_TILE),
           ),
         );
       }
@@ -71,7 +76,7 @@ class FarmGame extends FlameGame with TapCallbacks {
       CoinFlyComponent(
         sprite: coinSheet.getSprite(0, 0),
         start: from,
-        target: Vector2(size.x - 40, 40),
+        target: Vector2(size.x - Dimens.normalx, Dimens.normalx),
         onArrived: () => state.addCoins(5),
       ),
     );

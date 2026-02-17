@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame_farm_starter/game/farm_game.dart';
+import 'package:flame_farm_starter/utils/game_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'crop_component.dart';
@@ -13,7 +14,7 @@ class FarmTile extends RectangleComponent
       : super(
           position: position,
           size: Vector2.all(48),
-          paint: Paint()..color = const Color(0xFF8BC34A),
+          paint: Paint()..color = GameColors.farmTileNone,
         );
 
   @override

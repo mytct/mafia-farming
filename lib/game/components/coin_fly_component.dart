@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame_farm_starter/utils/dimens.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -14,7 +15,7 @@ class CoinFlyComponent extends SpriteComponent {
   }) : super(
           sprite: sprite,
           position: start,
-          size: Vector2.all(24),
+          size: Vector2.all(Dimens.normalx),
           anchor: Anchor.center,
         );
 

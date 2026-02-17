@@ -1,4 +1,6 @@
 import 'package:flame/components.dart';
+import 'package:flame_farm_starter/utils/config.dart';
+import 'package:flame_farm_starter/utils/dimens.dart';
 
 class CropComponent extends SpriteComponent {
   final List<Sprite> stages;
@@ -14,7 +16,7 @@ class CropComponent extends SpriteComponent {
   }) : super(
           sprite: stages[0],
           position: position,
-          size: Vector2(54, 64),
+          size: Vector2(Dimens.largex, Dimens.largex),
           anchor: Anchor.center,
           priority: 1,
         ) {
@@ -38,12 +40,12 @@ class CropComponent extends SpriteComponent {
   }
 
   void _grow() {
-    if (stage < 3) {
+    if (stage < Config.MAX_STATE_COMPONENTS) {
       stage = (stage + 1).clamp(0, stages.length - 1);
       sprite = stages[stage];
     }
 
-    if (stage >= 3) {
+    if (stage >= Config.MAX_STATE_COMPONENTS) {
       isReady = true;
       _growTimer.stop();
     }
